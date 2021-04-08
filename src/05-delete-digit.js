@@ -1,16 +1,21 @@
-/**
- * Given some integer, find the maximal number you can obtain
- * by deleting exactly one digit of the given number.
- *
- * @param {Number} n
- * @return {Number}
- *
- * @example
- * For n = 152, the output should be 52
- *
- */
-function deleteDigit(/* n */) {
-  throw new Error('Not implemented');
+function deleteDigit(n) {
+  let result = 0;
+  const numDigits = [];
+  let a = n;
+  while (a) {
+    numDigits.push(a % 10);
+    a = Math.floor(a / 10);
+  }
+  for (let indx = 0; indx < numDigits.length; indx++) {
+    let num = 0;
+    for (let i = numDigits.length - 1; i >= 0; i--) {
+      if (i !== indx) {
+        num = num * 10 + numDigits[i];
+      }
+    }
+    result = Math.max(num, result);
+  }
+  return result;
 }
 
 module.exports = deleteDigit;
